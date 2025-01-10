@@ -28,7 +28,7 @@ app.use(express.json());
 
 /* Routes */
 const moviesRouter = require("./router/movie.Router");
-app.use("/movies", moviesRouter);
+app.use("/api/movies", moviesRouter);
 
 /* Server listening */
 app.listen(APP_PORT, () => {

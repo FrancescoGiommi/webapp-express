@@ -1,9 +1,25 @@
 const connection = require("../db/connection");
 
-function Index(req, res) {
-  res.json({
-    message: "ok",
+function index(req, res) {
+  const sql = "SELECT * FROM `movies`";
+  connection.query(sql, (err, results) => {
+    res.json({
+      status: "OK",
+      movies: results,
+    });
   });
 }
 
-module.exports = { Index };
+function show(req, res) {
+  connection.query(
+    "SELECT * FROM `movies`",
+    (err, results) => {
+      console.log(results);
+    },
+    res.json({
+      message: "ok",
+    })
+  );
+}
+
+module.exports = { index, show };
