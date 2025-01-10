@@ -1,4 +1,4 @@
-//!Esercizio
+//! Esercizio
 
 /* Utilizzando il file in allegato, creiamo un database con MySQL Workbench
     Creiamo una nuova applicazione Express
@@ -22,6 +22,9 @@ const { APP_HOST, APP_PORT } = process.env;
 
 /* Middlewares */
 app.use(express.static("public"));
+
+/* Body parser per decifrare il request body */
+app.use(express.json());
 
 /* Routes */
 const moviesRouter = require("./router/movie.Router");
