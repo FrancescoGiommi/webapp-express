@@ -15,5 +15,12 @@ Bonus
     Inserire un middleware per le rotte inesistenti
     Inserire un middleware per la gestione errori */
 
+/* Express init */
 const express = require("express");
 const app = express();
+const { APP_HOST, APP_PORT } = process.env;
+
+/* Server listening */
+app.listen(APP_PORT, () => {
+  console.log(`App listening at ${APP_HOST}:${APP_PORT}`);
+});
