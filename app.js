@@ -20,12 +20,9 @@ const express = require("express");
 const app = express();
 const { APP_HOST, APP_PORT } = process.env;
 
-/* Route */
-app.get("/", (req, res) => {
-  res.json({
-    message: "ok",
-  });
-});
+/* Import router */
+const moviesRouter = require("./router/movie.Router");
+app.use(moviesRouter);
 
 /* Server listening */
 app.listen(APP_PORT, () => {
