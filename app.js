@@ -20,9 +20,12 @@ const express = require("express");
 const app = express();
 const { APP_HOST, APP_PORT } = process.env;
 
-/* Import router */
+/* Middlewares */
+app.use(express.static("public"));
+
+/* Routes */
 const moviesRouter = require("./router/movie.Router");
-app.use(moviesRouter);
+app.use("/movies", moviesRouter);
 
 /* Server listening */
 app.listen(APP_PORT, () => {
