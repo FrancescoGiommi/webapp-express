@@ -6,10 +6,9 @@ function index(req, res) {
   connection.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: "Database query failed" });
 
-    const [movie] = results;
     res.json({
       status: "OK",
-      movies: movie,
+      movies: results,
     });
   });
 }

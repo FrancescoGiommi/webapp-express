@@ -30,7 +30,7 @@ app.use(express.json());
 const moviesRouter = require("./router/movie.Router");
 app.use("/api/movies", moviesRouter);
 
-/* Error handler */
+/* Error handler and notFound */
 const errorsHandler = require("./middleware/errorsHandler");
 const notFound = require("./middleware/notFound");
 
