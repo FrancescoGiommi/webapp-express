@@ -39,7 +39,7 @@ function show(req, res) {
       movie.reviews = results;
       res.json({
         status: "OK",
-        movie,
+        movie: movie,
       });
     });
   });
