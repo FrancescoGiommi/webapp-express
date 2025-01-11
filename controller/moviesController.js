@@ -5,10 +5,13 @@ function index(req, res) {
   const sql = "SELECT id,title,director,genre,image FROM `movies`";
   connection.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: "Database query failed" });
-
+    const movie = results.map((movie) => ({
+      ...movie,
+      image: generateMovieImagePath(movie.image),
+    }));
     res.json({
       status: "OK",
-      movies: results,
+      movies: movie,
     });
   });
 }
@@ -41,5 +44,10 @@ function show(req, res) {
     });
   });
 }
+
+const generateMovieImagePath = (nameImage) => {
+  const { APP_HOST, APP_PORT } = process.env;
+  return `${APP_HOST}:${APP_PORT}/img/movies_cover/${nameImage}`;
+};
 
 module.exports = { index, show };
