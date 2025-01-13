@@ -18,10 +18,18 @@ Bonus
 /* Express init */
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const { APP_HOST, APP_PORT } = process.env;
+
+/* Cors config */
+var corsOptions = {
+  origin: "http://localhost:5173",
+  optionsSuccessStatus: 200,
+};
 
 /* Middlewares */
 app.use(express.static("public"));
+app.use(cors(corsOptions));
 
 /* Body parser per decifrare il request body */
 app.use(express.json());
