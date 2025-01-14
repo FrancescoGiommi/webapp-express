@@ -28,6 +28,7 @@ function show(req, res) {
       return res.status(500).json({ error: "Database query failed" });
     }
     const [movie] = results;
+
     const sqlReviews =
       "SELECT id,name,vote,text FROM reviews WHERE movie_id = ?";
     connection.query(sqlReviews, [movieId], (err, results) => {
@@ -37,6 +38,7 @@ function show(req, res) {
       }
 
       movie.reviews = results;
+      movie.image = generateMovieImagePath(movie.image);
       res.json({
         status: "OK",
         movie: movie,
