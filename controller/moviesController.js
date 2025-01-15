@@ -47,9 +47,26 @@ function show(req, res) {
   });
 }
 
+/* Store  */
+function store(req, res) {
+  const movieId = req.params.id;
+  const { name, vote, text } = req.body;
+  const sqlReviews =
+    "INSERT INTO reviews (movie_id,name,vote,text) VALUES (?, ?, ?, ?)";
+
+  connection.query(sqlReviews, [movieId, name, vote, text], (err, reviews) => {
+    if (err) return res.status(500).json({ error: "Database query failed" });
+
+    res.json({
+      status: "OK",
+      reviews: reviews,
+    });
+  });
+}
+
 const generateMovieImagePath = (nameImage) => {
   const { APP_HOST, APP_PORT } = process.env;
   return `${APP_HOST}:${APP_PORT}/img/movies_cover/${nameImage}`;
 };
 
-module.exports = { index, show };
+module.exports = { index, show, store };
