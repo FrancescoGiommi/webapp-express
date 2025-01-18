@@ -17,8 +17,9 @@ Bonus
 
 /* Express init */
 const express = require("express");
-const app = express();
 const cors = require("cors");
+const app = express();
+
 const { APP_HOST, APP_PORT, APP_FRONTEND_URL } = process.env;
 
 /* Cors config */
@@ -27,12 +28,12 @@ var corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+/* Body parser per decifrare il request body */
+app.use(express.json());
+
 /* Middlewares */
 app.use(express.static("public"));
 app.use(cors(corsOptions));
-
-/* Body parser per decifrare il request body */
-app.use(express.json());
 
 /* Routes */
 const moviesRouter = require("./router/movie.Router");
